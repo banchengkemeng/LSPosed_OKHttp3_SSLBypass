@@ -18,11 +18,6 @@ public class SSLPiningBypass implements IXposedHookLoadPackage {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         Log.d(TAG, "Loaded package: " + lpparam.packageName);
 
-        // 只在目标应用启用（这里设置为对所有应用生效，可以根据需要修改）
-        if (!lpparam.packageName.equals("com.target.app")) {
-            return;
-        }
-
         try {
             // 1. Hook SSLContext.init() for Android < 7
             hookSSLContext(lpparam);
